@@ -3,6 +3,7 @@ package WordSearchII
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 )
 
 /*
@@ -155,25 +156,17 @@ func copyBoard(board [][]byte) [][]byte {
 	return cp
 }
 
-func uniqueFinds(f []string) []string {
-	m := make(map[string]bool)
-	var nf []string
-	for _, _f := range f {
-		if m[_f] == false {
-			nf = append(nf, _f)
-			m[_f] = true
-		}
-	}
-	return nf
-}
-
 func findWords(board [][]byte, words []string) []string {
+	t := time.Now().Nanosecond()
 	var finds []string
 	loop := 0
+	defer func() {
+		fmt.Printf("loop count %d\n", loop)
+	}()
 	for positionX, rows := range board {
 		for positionY, b := range rows {
 			if len(words) == 0 {
-				break
+				return finds
 			}
 			cp := copyBoard(board)
 			cp[positionX][positionY] = byte(0)
@@ -220,8 +213,9 @@ func findWords(board [][]byte, words []string) []string {
 			}
 		}
 	}
-	fmt.Printf("loop count %d\n", loop)
-	return uniqueFinds(finds)
+	t2 := time.Now().Nanosecond()
+	fmt.Printf("costTime %d:ns \n", t2 - t)
+	return finds
 }
 
 func diff(word []string, inDiffWord []string) []string {

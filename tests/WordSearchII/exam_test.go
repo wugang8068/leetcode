@@ -6,8 +6,8 @@ import (
 )
 
 func Test_findWords(t *testing.T) {
-	b := [][]byte{[]byte("aaaaaaaaaaaa"), []byte("aaaaaaaaaaaa"), []byte("aaaaaaaaaaaa"), []byte("aaaaaaaaaaaa")}
-	words := []string{"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"}
-	finds := findWords(b, words)
+	b := [][]byte{[]byte("oaan"), []byte("etae"), []byte("ihkr"), []byte("iflv")}
+	words := []string{"oath","pea","eat","rain","hklf","hf"}
+	finds := findWords3(b, words)
 	fmt.Println(finds)
 }
